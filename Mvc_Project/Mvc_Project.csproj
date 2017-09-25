@@ -48,6 +48,8 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -101,16 +103,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Tabstrip.aspx" />
+    <Content Include="Views\Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Views\Partials\Partial.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Helpers\MyHelpers.cs" />
+    <Compile Include="Views\Tabstrip.aspx.cs">
+      <DependentUpon>Tabstrip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Partials\Partial.ascx.cs">
+      <DependentUpon>Partial.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -126,6 +143,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mvc_Connector\Mvc_Connector.csproj">
+      <Project>{31e04478-b376-4e82-85de-85acb5ffc7bd}</Project>
+      <Name>Mvc_Connector</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
