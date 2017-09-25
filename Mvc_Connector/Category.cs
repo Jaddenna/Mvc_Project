@@ -18,6 +18,8 @@ namespace Mvc_Connector
 		//Cat Description  
 		public string Description { get; set; }
 
+		public string ShortDescription { get; set; }
+
 		//represnts Parent ID and it's nullable  
 		public int? Pid { get; set; }
 		public virtual Category Parent { get; set; }
@@ -36,6 +38,14 @@ namespace Mvc_Connector
 					new Category(){ID = 5, Name = "Cat5", Description="Desc5", Pid = 2},
 					new Category(){ID = 5, Name = "Cat6", Description="Desc6", Pid = 2}
 				};
+			}
+		}
+
+		public static Category ExCat
+		{
+			get
+			{
+				return ExCats[0];
 			}
 		}
 	}

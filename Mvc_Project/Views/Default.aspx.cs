@@ -11,7 +11,7 @@ namespace Mvc_Project
 {
 	public class DefaultController : Controller
 	{
-		public ActionResult Index(FormCollection form)
+		public ActionResult Index()
 		{
 			ViewData["Title"] = "Böse Muschie!";
 			return View("~/Views/Default.aspx", Category.ExCats);
