@@ -104,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Tabstrip.aspx" />
-    <Content Include="Views\Default.aspx" />
+    <Content Include="Views\Grid.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Partials\Partial.ascx" />
     <Content Include="Web.config">
@@ -114,12 +114,14 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Helpers\Grid.cs" />
     <Compile Include="Helpers\MyHelpers.cs" />
+    <Compile Include="Helpers\Tabstrip.cs" />
     <Compile Include="Views\Tabstrip.aspx.cs">
       <DependentUpon>Tabstrip.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Views\Grid.aspx.cs">
+      <DependentUpon>Grid.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

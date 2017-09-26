@@ -10,7 +10,7 @@ namespace Mvc_Project
 {
 	public class TabstripController : Controller
 	{
-		public ActionResult Index(FormCollection form)
+		public ActionResult Index()
 		{
 			return View("~/Views/Tabstrip.aspx");
 		}

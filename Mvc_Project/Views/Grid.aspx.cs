@@ -9,12 +9,12 @@ using Mvc_Connector;
 
 namespace Mvc_Project
 {
-	public class DefaultController : Controller
+	public class GridController : Controller
 	{
 		public ActionResult Index()
 		{
 			ViewData["Title"] = "Böse Muschie!";
-			return View("~/Views/Default.aspx", Category.ExCats);
+			return View("~/Views/Grid.aspx", Category.ExCats);
 		}
 	}
 }
