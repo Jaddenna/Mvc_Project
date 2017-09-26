@@ -71,42 +71,38 @@ namespace Mvc_Project.Helpers
 	}
 	public class Tabpanel
 	{
-		public string TabstripID { get; private set; }
-		public HtmlHelper Html { get; set; }
-		public int Index { get; private set; }
-		public bool IsSelected
+		private string _tabstripID;
+		private HtmlHelper _html;
+		private int _index;
+
+		protected bool IsSelected
 		{
 			get
 			{
-				return Tabstrip.GetSelectedTab(Html, TabstripID) == Index.ToString();
+				return Tabstrip.GetSelectedTab(_html, _tabstripID) == _index.ToString();
 			}
 		}
 
 
 		public Tabpanel(HtmlHelper html, string tabstripID, int index)
 		{
-			TabstripID = tabstripID;
-			Html = html;
-			Index = index;
+			_tabstripID = tabstripID;
+			_html = html;
+			_index = index;
 		}
 
 		public void CreateBeginTab()
 		{
-			StringWriter sw = new StringWriter();
-			using (HtmlTextWriter writer = new HtmlTextWriter(Html.ViewContext.Writer))
+			using (HtmlTextWriter writer = new HtmlTextWriter(_html.ViewContext.Writer))
 			{
 				string selectedClass = IsSelected ? "selectedTab" : "";
-				writer.Write($"<div class='tab {selectedClass}' data-index='{Index}'>");
+				writer.Write($"<div class='tab {selectedClass}' data-index='{_index}'>");
 			}
 		}
 
-		public static void CreateEndTab(HtmlHelper html)
+		public static string CreateEndTab()
 		{
-			StringWriter sw = new StringWriter();
-			using (HtmlTextWriter writer = new HtmlTextWriter(html.ViewContext.Writer))
-			{
-				writer.Write("</div>");
-			}
+			return "</div>";
 		}
 
 	}

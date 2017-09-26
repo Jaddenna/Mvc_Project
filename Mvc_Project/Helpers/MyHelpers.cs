@@ -42,14 +42,21 @@ namespace Mvc_Project.Helpers
 			Tabstrip tabstrip = new Helpers.Tabstrip(html, id, tabs);
 			tabstrip.CreateTabstrip();
 		}
+
 		public static void MyBeginTabstripPanel(HtmlHelper html, string tabstripID, int index)
 		{
 			Tabpanel panel = new Tabpanel(html, tabstripID, index);
 			panel.CreateBeginTab();
 		}
+
 		public static void MyEndTabstripPanel(HtmlHelper html)
 		{
-			Tabpanel.CreateEndTab(html);
+			Write(html, Tabpanel.CreateEndTab());
+		}
+
+		public static void Write(HtmlHelper helper, string write)
+		{
+			helper.ViewContext.Writer.Write(write);
 		}
 	}
 }

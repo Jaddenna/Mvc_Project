@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mvc_Project.Helpers;
+using System.Web.Mvc;
 
 namespace Mvc_Project.Tests.Helpers
 {
@@ -17,6 +18,15 @@ namespace Mvc_Project.Tests.Helpers
 		public void GroupPrefixNotChanged()
 		{
 			Assert.AreEqual("Tab_", Tabstrip.GROUP_PREFIX);
+		}
+		[TestMethod]
+		public void CreateEndTabDiv()
+		{
+			Assert.AreEqual("</div>", Tabpanel.CreateEndTab());
+		}
+		[TestMethod]
+		public void CreateBeginTab()
+		{
 		}
 	}
 }

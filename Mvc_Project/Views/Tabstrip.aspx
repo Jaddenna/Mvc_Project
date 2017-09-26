@@ -70,16 +70,16 @@
 </head>
 <body>
 	<% Html.BeginForm("Index", "Tabstrip"); %>
-	<% MyHelpers.Tabstrip(Html, "Tabstrip", new string[] { "Tab1", "Tab2", "Tab3" }); %>
-	<% MyHelpers.BeginTabstripPanel(Html, "Tabstrip", 0); %>
+	<% MyHelpers.MyTabstrip(Html, "Tabstrip", new string[] { "Tab1", "Tab2", "Tab3" }); %>
+	<% MyHelpers.MyBeginTabstripPanel(Html, "Tabstrip", 0); %>
 	<h1>Tab 1</h1>
-	<% MyHelpers.EndTabstripPanel(Html); %>
-	<% MyHelpers.BeginTabstripPanel(Html, "Tabstrip", 1); %>
+	<% MyHelpers.MyEndTabstripPanel(Html); %>
+	<% MyHelpers.MyBeginTabstripPanel(Html, "Tabstrip", 1); %>
 	<h1>Tab 2</h1>
-	<% MyHelpers.EndTabstripPanel(Html); %>
-	<% MyHelpers.BeginTabstripPanel(Html, "Tabstrip", 2); %>
+	<% MyHelpers.MyEndTabstripPanel(Html); %>
+	<% MyHelpers.MyBeginTabstripPanel(Html, "Tabstrip", 2); %>
 	<h1>Tab 3</h1>
-	<% MyHelpers.EndTabstripPanel(Html); %>
+	<% MyHelpers.MyEndTabstripPanel(Html); %>
 	<% Html.EndForm(); %>
 	<script>
 		function changeTab()
