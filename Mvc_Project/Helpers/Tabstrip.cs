@@ -100,10 +100,9 @@ namespace Mvc_Project.Helpers
 			}
 		}
 
-		public static string CreateEndTab()
+		public static void CreateEndTab(TextWriter writer)
 		{
-			return "</div>";
+			writer.Write("</div>");
 		}
-
 	}
 }

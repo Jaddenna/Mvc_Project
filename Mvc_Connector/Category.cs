@@ -36,7 +36,12 @@ namespace Mvc_Connector
 					new Category(){ID = 3, Name = "Cat3", Description="Desc3"},
 					new Category(){ID = 4, Name = "Cat14", Description="Desc14", Pid = 1},
 					new Category(){ID = 5, Name = "Cat5", Description="Desc5", Pid = 2},
-					new Category(){ID = 5, Name = "Cat6", Description="Desc6", Pid = 2}
+					new Category(){ID = 5, Name = "Cat6", Description="Desc6", Pid = 2},
+					new Category(){ID = 5, Name = "Cat7", Description="Desc7", Pid = 2},
+					new Category(){ID = 5, Name = "Cat8", Description="Desc8", Pid = 2},
+					new Category(){ID = 5, Name = "Cat9", Description="Desc9", Pid = 2},
+					new Category(){ID = 5, Name = "Cat10", Description="Desc10", Pid = 2},
+					new Category(){ID = 5, Name = "Cat11", Description="Desc11", Pid = 2}
 				};
 			}
 		}

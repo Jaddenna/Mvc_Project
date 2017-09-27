@@ -12,13 +12,13 @@ namespace Mvc_Project.Helpers
 	public class Grid
 	{
 		public HtmlHelper Html { get; set; }
-		public int[] ResultNumbers { get; set; } = new int[] { 2, 10, 25 };
+		public int[] ResultNumbers { get; set; } = new int[] { 1, 2, 10, 25 };
 		public int PageCount { get; set; }
 		public int PageIndex
 		{
 			get
 			{
-				string requestPage = Html?.ViewContext.HttpContext?.Request?.Form["gridpageindex"] ?? "-1";
+				string requestPage = Html?.ViewContext.HttpContext?.Request?.Form["gridpageindex"] ?? "1";
 				return int.Parse(requestPage);
 			}
 		}
@@ -26,7 +26,7 @@ namespace Mvc_Project.Helpers
 		{
 			get
 			{
-				string requestPage = Html?.ViewContext.HttpContext?.Request?.Form["gridpager"] ?? "-1";
+				string requestPage = Html?.ViewContext.HttpContext?.Request?.Form["gridpager"] ?? ResultNumbers[0].ToString();
 				return int.Parse(requestPage);
 			}
 		}
@@ -41,15 +41,18 @@ namespace Mvc_Project.Helpers
 			StringWriter sw = new StringWriter();
 			using (HtmlTextWriter writer = new HtmlTextWriter(Html.ViewContext.Writer))
 			{
-				(new GridPager()).CreatePager(writer, ResultNumber, PageCount, PageIndex);
-				writer.Write("<table><thead><tr>");
+				GridPager pager = new GridPager(writer, ResultNumber, PageCount, PageIndex, renderFuncs.Length);
+				pager.CreatePager();
+				writer.Write("<table class='gridTable'><thead><tr>");
+				pager.CreatePagerRow();
+				writer.Write("<tr>");
 				foreach (GridColum<T> col in renderFuncs)
 				{
 					col.CreatHeader(writer);
 				}
 				writer.Write("</tr></thead>");
 
-				int start = ResultNumber > 0 && PageIndex > 0 ? ResultNumber * (PageIndex - 1) : 0;
+				int start = ResultNumber > 0 && PageIndex > 0 && PageIndex <= PageCount ? ResultNumber * (PageIndex - 1) : 0;
 				int end = ResultNumber > 0 ? ResultNumber : collection.Count();
 				foreach (T item in collection.Skip(start).Take(end))
 				{
@@ -60,35 +63,78 @@ namespace Mvc_Project.Helpers
 					}
 					writer.Write("</tr>");
 				}
-				writer.Write("</tbody></table>");
+				writer.Write("</tbody><tfoot>");
+				pager.CreatePagerRow();
+				writer.Write("</tfoot></table>");
 			}
 		}
 	}
 	public class GridPager
 	{
-		public int[] Pages { get; set; } = new int[] { 2, 5, 10 };
+		private HtmlTextWriter _writer;
+		private int _resultNumber;
+		private int _pageCount;
+		private int _pageIndex;
+		private int _colspan;
+
+		public int[] Pages { get; set; } = new int[] { 1, 2, 5, 10 };
 		public GridPager() { }
 		public GridPager(int[] pages)
 		{
 			Pages = pages;
 		}
-		public void CreatePager(HtmlTextWriter writer, int selectedValue, int pageCount, int pageIndex)
+
+		public GridPager(HtmlTextWriter writer, int resultNumber, int pageCount, int pageIndex, int colspan)
 		{
-			writer.Write("<select name='gridpager' onchange='setPages(this)'>");
+			this._writer = writer;
+			this._resultNumber = resultNumber;
+			this._pageCount = pageCount;
+			this._pageIndex = pageIndex;
+			this._colspan = colspan;
+		}
+
+		public void CreatePager()
+		{
+			_writer.Write("<select name='gridpager' onchange='setPages(this)'>");
 			foreach (int page in Pages)
 			{
-				string selected = page == selectedValue ? "selected='selected'" : "";
-				writer.Write($"<option value='{page}' {selected}>{page}</option>");
+				string selected = page == _resultNumber ? "selected='selected'" : "";
+				_writer.Write($"<option value='{page}' {selected}>{page}</option>");
 			}
-			writer.Write("</select>");
+			_writer.Write("</select>");
+		}
+		public void CreatePagerRow()
+		{
+			_writer.Write($"<tr class='pagerRow'><td colspan={_colspan}>");
 
-			writer.Write("<select name='gridpageindex' onchange='setPages(this)'>");
-			for (int i = 1; i <= pageCount; i++)
+			string disable = _pageIndex == 1 ? "disabled='disabled'" : "";
+			WritePagerNumber("<<", 1, "pagerPrevFirst", "class='pagerPrevFirst'", disable);
+			WritePagerNumber("<", _pageIndex - 1, "pagerPrev", "class='pagerPrev'", disable);
+
+			int startNumber = (_pageIndex - 2) > 0 ? _pageIndex - 2 : 1;
+			int endNumber = (_pageIndex + 2) < _pageCount ? _pageIndex + 2 : _pageCount;
+
+			for (int i = startNumber; i <= endNumber; i++)
 			{
-				string selected = i == pageIndex ? "selected='selected'" : "";
-				writer.Write($"<option value='{i}' {selected}>{i}</option>");
+				bool selected = i == _pageIndex;
+				string checkedAttr = selected ? "checked='checked'" : "";
+				string cssClass = "class='pagerNumber " + (selected ? "pagerNumberSelected" : "") + "'";
+				string id = "page" + i;
+				WritePagerNumber(i.ToString(), i, id, checkedAttr, cssClass);
 			}
-			writer.Write("</select>");
+
+			disable = _pageIndex >= _pageCount ? "disabled='disabled'" : "" ;
+			WritePagerNumber(">", _pageIndex + 1, "pagerNext", "class='pagerNext'", disable);
+			WritePagerNumber(">>", _pageCount, "pagerNextLast", "class='pagerNextLast'", disable);
+
+			_writer.Write("</td></tr>");
+		}
+
+		private void WritePagerNumber(string text, int value, string id, params string[] inputAttr)
+		{
+			string attr = string.Join(" ", inputAttr);
+			_writer.Write($"<input type='radio' id='{id}' name='gridpageindex' value='{value}' {attr} onchange='setPages(this)' />");
+			_writer.Write($"<label for='{id}'>{text}</label>");
 		}
 	}
 	public class GridColum<T>

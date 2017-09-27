@@ -1,15 +1,14 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-<%@ Import Namespace="Mvc_Project.Helpers" %>
-<%@ Import Namespace="Mvc_Connector" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+	<%= Styles.Render("~/Style") %>
 </head>
 <body>
-	<% Html.BeginForm("Index", "Default"); %>
+	<% Html.BeginForm("Index", "Grid"); %>
         <div>
 			<h1><%= ViewData["Title"] %></h1>
 			<% Html.RenderPartial("~/Views/Partials/Partial.ascx", ViewData); %>

@@ -1,0 +1,106 @@
+﻿body
+{
+	font-family: Ubuntu;
+}
+
+.gridTable
+{
+	border-spacing: 0;
+}
+
+	.gridTable > thead > tr > th,
+	.gridTable > tbody > tr > td
+	{
+		padding: 10px 15px;
+	}
+
+	.gridTable > tbody > tr > td
+	{
+		border: 1px solid;
+	}
+
+	.gridTable > thead > tr > th
+	{
+		background-color: rgb(0,0,0);
+		color: rgb(255,255,255);
+	}
+
+	.gridTable > tbody > tr:nth-child(2n+1) > td
+	{
+		background-color: rgba(200,200,200,0.3);
+	}
+
+	.gridTable > tbody > tr:nth-child(2n+1):hover > td
+	{
+		background-color: rgba(200,200,200,0.5);
+	}
+
+	.gridTable > tbody > tr:nth-child(2n):hover > td
+	{
+		background-color: rgba(200,200,200,0.2);
+	}
+	.gridTable .pagerRow
+	{
+		text-align: center;
+		background-color: rgba(200,200,200,0.1);
+	}
+	.gridTable .pagerRow td
+	{
+		border-top: 1px solid;
+		border-bottom: 1px solid;
+	}
+		.gridTable .pagerRow input
+		{
+			display: none;
+		}
+
+	.gridTable .pagerNext + label,
+	.gridTable .pagerPrev + label,
+	.gridTable .pagerNumber + label
+	{
+		margin: 10px 5px;
+	}
+
+	.gridTable .pagerPrev + label
+	{
+		margin-right: 15px;
+		margin-left: 7px;
+	}
+	
+	.gridTable .pagerNext + label
+	{
+		margin-right: 7px;
+		margin-left: 15px;
+	}
+
+
+	.gridTable .pagerNumber + label,
+	.gridTable .pagerNext:hover:not(:disabled) + label,
+	.gridTable .pagerNextLast:hover:not(:disabled) + label,
+	.gridTable .pagerPrev:hover:not(:disabled) + label,
+	.gridTable .pagerPrevFirst:hover:not(:disabled) + label
+	{
+		text-decoration: underline;
+	}
+
+	.gridTable .pagerNumberSelected + label
+	{
+		font-weight: 700;
+		font-size: 20px;
+	}
+
+	.gridTable .pagerNext + label,
+	.gridTable .pagerNextLast + label,
+	.gridTable .pagerPrev + label,
+	.gridTable .pagerPrevFirst + label
+	{
+		font-weight: 700;
+		font-size: 17px;
+	}
+	.gridTable .pagerNext:disabled + label,
+	.gridTable .pagerNextLast:disabled + label,
+	.gridTable .pagerPrev:disabled + label,
+	.gridTable .pagerPrevFirst:disabled + label
+	{
+		color: rgba(0,0,0,0.2);
+	}

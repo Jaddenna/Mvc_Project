@@ -1,8 +1,5 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
 
-<%@ Import Namespace="Mvc_Project.Helpers" %>
-<%@ Import Namespace="Mvc_Connector" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using Mvc_Project.App_Start;
+using System.Web.Optimization;
 
 namespace Mvc_Project
 {
@@ -17,7 +19,8 @@ namespace Mvc_Project
             // Code, der beim Anwendungsstart ausgeführt wird
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+			BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

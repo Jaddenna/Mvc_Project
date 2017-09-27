@@ -19,14 +19,5 @@ namespace Mvc_Project.Tests.Helpers
 		{
 			Assert.AreEqual("Tab_", Tabstrip.GROUP_PREFIX);
 		}
-		[TestMethod]
-		public void CreateEndTabDiv()
-		{
-			Assert.AreEqual("</div>", Tabpanel.CreateEndTab());
-		}
-		[TestMethod]
-		public void CreateBeginTab()
-		{
-		}
 	}
 }

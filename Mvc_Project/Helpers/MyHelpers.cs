@@ -51,12 +51,7 @@ namespace Mvc_Project.Helpers
 
 		public static void MyEndTabstripPanel(HtmlHelper html)
 		{
-			Write(html, Tabpanel.CreateEndTab());
-		}
-
-		public static void Write(HtmlHelper helper, string write)
-		{
-			helper.ViewContext.Writer.Write(write);
+			Tabpanel.CreateEndTab(html.ViewContext.Writer);
 		}
 	}
 }
